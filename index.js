@@ -1,25 +1,20 @@
-const axios = require('axios');
+const request = require('request');
 const crypto = require('crypto');
 const endpoints = require('./endpoints');
 
-class Blih {
+const options = {
+    baseUrl: 'https://blih.epitech.eu/',
+    timeout: 10000
+};
+
+module.exports = class Blih {
 
     constructor (email, password) {
         this.email = email;
         this.password = password;
         this.token = crypto.createHash('sha512').update(password).digest('hex');
-        this.api = axios.create({
-            baseURL: 'https://blih.epitech.eu/',
-            headers: { 'Content-Type': 'application/json' }
-        });
-        this.api.interceptors.response.use(
-            response => response.data,
-            error => Promise.reject({
-                status: error.response.status,
-                statusText: error.response.statusText,
-                data: error.response.data
-            })
-        );
+        this.api = request.defaults(options);
+
         endpoints.forEach(endpoint => {
             this[endpoint.name] = (...args) => this.call(endpoint, ...args);
         });
@@ -37,13 +32,19 @@ class Blih {
             .update(body.data ? JSON.stringify(body.data, null, 4) : '')
             .digest('hex');
 
-        return this.api.request({
-            method: endpoint.method,
-            url: endpoint.path(...args),
-            data: body
+        return new Promise((resolve, reject) => {
+            this.api({
+                method: endpoint.method,
+                uri: endpoint.path(...args),
+                json: body
+            }, (err, data, body) => {
+                if (err) {
+                    reject(body);
+                } else {
+                    resolve(body);
+                }
+            });
         });
     }
 
 };
-
-module.exports = Blih;
