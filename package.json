@@ -13,6 +13,10 @@
   },
   "author": "Lucien Le Roux <lucien.le-roux@epitech.eu>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kabukki/blih/issues"
+  },
+  "homepage": "https://github.com/kabukki/blih",
   "dependencies": {
     "axios": "^0.17.1"
   }
