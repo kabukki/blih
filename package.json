@@ -1,0 +1,14 @@
+{
+  "name": "blih",
+  "version": "1.0.0",
+  "description": "Blih API for Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucien Le Roux <lucien.le-roux@epitech.eu>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1"
+  }
+}
