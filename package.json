@@ -1,6 +1,6 @@
 {
   "name": "blih",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Blih API for Node",
   "keywords": [
     "blih",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/kabukki/blih",
   "repository": {
     "type": "git",
-	"url": "https://github.com/kabukki/blih.git"
+    "url": "https://github.com/kabukki/blih.git"
   },
   "dependencies": {
     "axios": "^0.17.1"
