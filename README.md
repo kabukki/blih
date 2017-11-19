@@ -18,8 +18,8 @@ const Blih = require('blih');
 const api = new Blih('email', 'password');
 
 api.listRepositories()
-  .then(data => { console.log(data); })
-  .catch(err => { console.log(err); });
+  .then(console.log)
+  .catch(console.log);
 
 ```
 
@@ -62,10 +62,10 @@ The response for an unsuccessful call is an object containing the following info
 {
   // 'status' is the HTTP status code from the server response
   status: 401,
-  
+
   // 'statusText' is the HTTP status message from the server response
   statusText: 'Unauthorized',
-  
+
   // 'data' is the response that was provided by the server
   data: {
     error: 'Bad token'

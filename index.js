@@ -11,7 +11,6 @@ module.exports = class Blih {
 
     constructor (email, password) {
         this.email = email;
-        this.password = password;
         this.token = crypto.createHash('sha512').update(password).digest('hex');
         this.api = request.defaults(options);
 
@@ -39,9 +38,24 @@ module.exports = class Blih {
                 json: body
             }, (err, response, body) => {
                 if (err || body.error) {
-                    reject(body);
+                    reject(body.error);
                 } else {
                     resolve(body);
+                }
+            });
+        });
+    }
+
+    static ping () {
+        return new Promise((resolve, reject) => {
+            request({
+                ...options,
+                uri: '/'
+            }, (err, response, body) => {
+                if (response.statusCode >= 200 && response.statusCode < 300) {
+                    resolve();
+                } else {
+                    reject(response.statusCode);
                 }
             });
         });

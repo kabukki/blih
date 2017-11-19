@@ -1,9 +1,5 @@
 module.exports = [
     {
-        name: 'ping',
-        method: 'GET',
-        path: _ => '/'
-    }, {
         name: 'createRepository',
         method: 'POST',
         path: _ => '/repositories',
