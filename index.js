@@ -38,9 +38,9 @@ module.exports = class Blih {
                 json: body
             }, (err, response, body) => {
                 if (err || body.error) {
-                    reject(body.error);
+                    reject(err || body.error);
                 } else {
-                    resolve(body);
+                    resolve(endpoint.transform ? endpoint.transform(body) : body);
                 }
             });
         });

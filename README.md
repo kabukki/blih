@@ -4,11 +4,11 @@ Blih API for Node using the Promise API.
 ## Installation
 
 Using npm:
-```
-npm install blih
+```bash
+$ npm install blih
 ```
 
-## Examples
+## Quickstart
 
 Get all your repositories :
 
@@ -25,50 +25,123 @@ api.listRepositories()
 
 ## Authentication
 
-You have to be authenticated in order to use the Blih API, using your Epitech email and password.
+You have to be authenticated in order to use the Blih API (except for static methods), using your Epitech email and password.
 
-__Note__: Old logins using the format 'xxxxxx_y' are not used to authenticate anymore.
+**Note**: Old logins using the format 'xxxxxx_y' are not used to authenticate anymore.
 
 ## Documentation
 
-Successful calls resolve the promise, while failed calls reject it.
+The class exposes a set of methods, each returning a promise that will be resolved if the call was successful, rejected otherwise. In case of a failure, the response is a string describing the error.
 
-### Success
+### :cloud: Repositories
 
-The response for a successful call is an object containing directly all the data provided by the server.
+**createRepository(name, [description])**  
+Create a repository.
 
-Api call            | Description                         | Arguments         | Response properties
---------------------|-------------------------------------|-------------------|--------------------------
-createRepository    | create a repository                 | name, description | message
-listRepositories    | get all repositories                | -                 | message, repositories
-deleteRepositories  | delete a repository                 | name              | message
-repositoryInfo      | get information about a repository  | name              | message
-setACL              | set ACL for a repository            | name, user, acl   | message
-getACL              | get ACL of a repository             | name              | _all collaborators_
-uploadKey           | upload an ssh key                   | sshkey            | message
-deleteKey           | delete an ssh key                   | sshkey            | message
-listKeys            | list all ssh keys                   | -                 | _all keys_
-whoami              | get identity                        | -                 | message
-ping                | ping the server                     | -                 | 'Bocal Lightweight Interface for Humans'
+:warning: The `description` is currently ignored.
 
-:warning: the 'description' argument provided to `createRepository` is ignored.
+Returns: a `String` confirming creation
 
-:warning: the 'message' property in response to `repositoryInfo` contains directly the data
+**deleteRepository(name)**  
+Delete a repository
 
-### Failure
+Returns a `String` confirming deletion
 
-The response for an unsuccessful call is an object containing the following information :
+**listRepositories()**  
+Get all repositories
+
+Returns an `Array` of `Objects` with the following properties:
 ```javascript
 {
-  // 'status' is the HTTP status code from the server response
-  status: 401,
+	// The name of the repository
+	name: 'B5MEMO',
 
-  // 'statusText' is the HTTP status message from the server response
-  statusText: 'Unauthorized',
+	// The URL used by the API to perform actions on this repository
+	url: 'https://blih.epitech.eu/repository/B5MEMO',
 
-  // 'data' is the response that was provided by the server
-  data: {
-    error: 'Bad token'
-  }
+	// UUID of the repository
+	uuid: '6846b6e7-1ac9-5402-ba53-3cc84dd68207'
 }
 ```
+
+**repositoryInfo(name)**  
+Get information about a repository
+
+Returns an `Object` with the following properties:
+```javascript
+{
+	// Description of the repository, usually always set to 'None'
+	description: 'None',
+
+	// Creation time of the repository (POSIX timestamp)
+	creation_time: 1509351930,
+
+	// The URL used by the API to perform actions on this repository
+	url: 'https://blih.epitech.eu/repository/B5MEMO',
+
+	// Visibility of the repository
+	public: false,
+
+	// UUID of the repository
+	uuid: '6846b6e7-1ac9-5402-ba53-3cc84dd68207'
+}
+```
+
+### :busts_in_silhouette: ACL
+
+**setACL(name, user, acl)**  
+Set ACL for a repository
+
+Returns a `String` confirming ACL update
+
+**getACL(name)**  
+Get ACL of a repository
+
+Returns an `Array` of `Objects` containing the following properties:
+```javascript
+{
+	// Name of the collaborator
+	name: 'ramassage-tek',
+
+	// ACL rights given to them
+	rights: 'r'
+}
+```
+
+### :key: SSH keys
+
+**uploadKey(key)**  
+Upload an SSH key
+
+Returns a `String` confirming upload
+
+**deleteKey(key)**  
+Delete an SSH key  
+
+Returns a `String` confirming deletion
+
+**listKeys()**  
+List all SSH keys
+
+Returns an `Array` of `Objects` containing the following properties:
+```javascript
+{
+	// Identifier of the key
+	name: 'root@pam',
+
+	// Actual key contents
+	data: 'ssh-rsa .....'
+}
+```
+
+### :wrench: Miscellaneous
+
+**whoami()**  
+Get your identity
+
+Returns a `String` containing your old login or email, depending on your promotion.
+
+**static ping()**  
+Ping the Blih server
+
+Returns `undefined` if the server responded in time, otherwise the promise is rejected with a description of the error that caused it.
