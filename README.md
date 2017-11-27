@@ -1,4 +1,8 @@
 # Blih
+
+[![npm](https://img.shields.io/npm/v/blih.svg?style=flat-square)]()
+[![npm](https://img.shields.io/npm/dt/blih.svg?style=flat-square)]()
+
 Blih API for Node using the Promise API.
 
 ## Installation
