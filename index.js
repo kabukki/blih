@@ -52,7 +52,9 @@ module.exports = class Blih {
                 ...options,
                 uri: '/'
             }, (err, response, body) => {
-                if (response.statusCode >= 200 && response.statusCode < 300) {
+                if (err) {
+                    reject(err);
+                } else if (response.statusCode >= 200 && response.statusCode < 300) {
                     resolve();
                 } else {
                     reject(response.statusCode);

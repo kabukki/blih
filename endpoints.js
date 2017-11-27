@@ -26,7 +26,10 @@ module.exports = [
         name: 'repositoryInfo',
         method: 'GET',
         path: r => `/repository/${r}`,
-        transform: data => data.message
+        transform: data => {
+            data.message.public = data.message.public !== 'False';
+            return data.message;
+        }
     /*
      * ACL
      */
