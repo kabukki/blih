@@ -37,8 +37,14 @@ module.exports = class Blih {
                 uri: endpoint.path(...args),
                 json: body
             }, (err, response, body) => {
-                if (err || body.error) {
-                    reject(err || endpoint.onError ? endpoint.onError() : body.error);
+                if (err) {
+                    reject(err);
+                } else if (body.error) {
+                    if (endpoint.onError) {
+                        resolve(endpoint.onError());
+                    } else {
+                        reject(body.error);
+                    }
                 } else {
                     resolve(endpoint.transform ? endpoint.transform(body) : body);
                 }
