@@ -1,3 +1,18 @@
+/*
+ * This is the list of every endpoint exposed by the Blih API.
+ *
+ * Each of them is defined by the following properties:
+ * - name: name of the endpoint
+ * - method: method the endpoint accepts
+ * - path: path to endpoint
+ *
+ * Additionnally, optional properties may affect data sent or received
+ * when requesting the API :
+ * - data: if the endpoint accepts data
+ * - transform: to transform received data
+ * - onError: data to receive instead of an error
+ */
+
 module.exports = [
     /*
      * Repositories
@@ -21,7 +36,8 @@ module.exports = [
                 name: r,
                 url: data.repositories[r].url,
                 uuid: data.repositories[r].uuid
-            }))
+            })),
+        onError: _ => []
     }, {
         name: 'repositoryInfo',
         method: 'GET',
@@ -48,7 +64,8 @@ module.exports = [
             .map(c => ({
                 name: c,
                 rights: data[c]
-            }))
+            })),
+        onError: _ => []
     /*
      * SSH keys
      */
@@ -70,7 +87,8 @@ module.exports = [
             .map(k => ({
                 name: k,
                 data: data[k]
-            }))
+            })),
+        onError: _ => []
     /*
      * Misc
      */
