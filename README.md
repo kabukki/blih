@@ -19,7 +19,7 @@ Get all your repositories :
 ```javascript
 const Blih = require('blih');
 
-const api = new Blih({ email: 'email', password: 'password'});
+const api = new Blih({ email: 'email', password: 'password' });
 
 api.listRepositories()
   .then(console.log)
@@ -32,10 +32,7 @@ api.listRepositories()
 You have to be authenticated in order to use the Blih API (except for static methods), using your Epitech email and password.
 
 ```javascript
-const api = new Blih({
-	email: 'email',
-	password: 'password'
-});
+const api = new Blih({ email: 'email', password: 'password' });
 ```
 
 **Note**: Old logins using the format 'xxxxxx_y' are not used to authenticate anymore.
@@ -43,10 +40,7 @@ const api = new Blih({
 Alternatively, you can pass your token instead of your password if you have it. If both are given, only the token is taken into account.
 
 ```javascript
-const api = new Blih({
-	email: 'email',
-	token: 'token'
-});
+const api = new Blih({ email: 'email', token: 'token' });
 ```
 
 ## Documentation
