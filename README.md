@@ -33,8 +33,8 @@ You have to be authenticated in order to use the Blih API (except for static met
 
 ```javascript
 const api = new Blih({
-	email: 'email',
-	password: 'password'
+  email: 'email',
+  password: 'password'
 });
 ```
 
@@ -44,8 +44,8 @@ Alternatively, you can pass your token instead of your password if you have it. 
 
 ```javascript
 const api = new Blih({
-	email: 'email',
-	token: 'token'
+  email: 'email',
+  token: 'token'
 });
 ```
 
