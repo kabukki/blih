@@ -19,7 +19,7 @@ Get all your repositories :
 ```javascript
 const Blih = require('blih');
 
-const api = new Blih('email', 'password');
+const api = new Blih({ email: 'email', password: 'password'});
 
 api.listRepositories()
   .then(console.log)
@@ -31,7 +31,23 @@ api.listRepositories()
 
 You have to be authenticated in order to use the Blih API (except for static methods), using your Epitech email and password.
 
+```javascript
+const api = new Blih({
+	email: 'email',
+	password: 'password'
+});
+```
+
 **Note**: Old logins using the format 'xxxxxx_y' are not used to authenticate anymore.
+
+Alternatively, you can pass your token instead of your password if you have it. If both are given, only the token is taken into account.
+
+```javascript
+const api = new Blih({
+	email: 'email',
+	token: 'token'
+});
+```
 
 ## Documentation
 
@@ -39,19 +55,19 @@ The class exposes a set of methods, each returning a promise that will be resolv
 
 ### :cloud: Repositories
 
-**createRepository(name, [description])**  
+#### `createRepository(name, [description])`
 Create a repository.
 
 :warning: The `description` is currently ignored.
 
 Returns: a `String` confirming creation
 
-**deleteRepository(name)**  
+#### `deleteRepository(name)`
 Delete a repository
 
 Returns a `String` confirming deletion
 
-**listRepositories()**  
+#### `listRepositories()`
 Get all repositories
 
 Returns an `Array` of `Objects` with the following properties:
@@ -68,7 +84,7 @@ Returns an `Array` of `Objects` with the following properties:
 }
 ```
 
-**repositoryInfo(name)**  
+#### `repositoryInfo(name)`
 Get information about a repository
 
 Returns an `Object` with the following properties:
@@ -93,12 +109,12 @@ Returns an `Object` with the following properties:
 
 ### :busts_in_silhouette: ACL
 
-**setACL(name, user, acl)**  
+#### `setACL(name, user, acl)`
 Set ACL for a repository
 
 Returns a `String` confirming ACL update
 
-**getACL(name)**  
+#### `getACL(name)`
 Get ACL of a repository
 
 Returns an `Array` of `Objects` containing the following properties:
@@ -114,23 +130,25 @@ Returns an `Array` of `Objects` containing the following properties:
 
 ### :key: SSH keys
 
-**uploadKey(key)**  
-Upload an SSH key
+#### `uploadKey(key)`
+
+Upload an SSH key. Only RSA keys are supported.
 
 Returns a `String` confirming upload
 
-**deleteKey(key)**  
+#### `deleteKey(key)`
 Delete an SSH key  
 
 Returns a `String` confirming deletion
 
-**listKeys()**  
+#### `listKeys()`
+
 List all SSH keys
 
 Returns an `Array` of `Objects` containing the following properties:
 ```javascript
 {
-	// Identifier of the key
+	// Identifier of the key (comment)
 	name: 'root@pam',
 
 	// Actual key contents
@@ -140,12 +158,12 @@ Returns an `Array` of `Objects` containing the following properties:
 
 ### :wrench: Miscellaneous
 
-**whoami()**  
+#### `whoami()`
 Get your identity
 
 Returns a `String` containing your old login or email, depending on your promotion.
 
-**static ping()**  
+#### `static ping()`
 Ping the Blih server
 
-Returns `undefined` if the server responded in time, otherwise the promise is rejected with a description of the error that caused it.
+Returns the status code of the response if the server responded in time, otherwise the promise is rejected with a description of the error that caused it.

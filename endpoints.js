@@ -73,11 +73,13 @@ module.exports = [
         name: 'uploadKey',
         path: _ => '/sshkeys',
         method: 'POST',
-        data: sshkey => ({ sshkey })
+        data: sshkey => ({ sshkey }),
+        transform: data => data.message
     }, {
         name: 'deleteKey',
         path: k => `/sshkey/${k}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        transform: data => data.message
     }, {
         name: 'listKeys',
         path: _ => '/sshkeys',
