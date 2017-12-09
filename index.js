@@ -7,6 +7,11 @@ const options = {
     timeout: 10000
 };
 
+const fatalErrors = [
+    'Bad token',
+    'Repository not found'
+];
+
 module.exports = class Blih {
 
     constructor (credentials) {
@@ -53,8 +58,8 @@ module.exports = class Blih {
                 } else if (response.statusCode < 200 || response.statusCode >= 300) {
                     // API returned an error
                     if (body.error) {
-                        // Don't ignore authentication errors
-                        if (response.statusCode != 401 && endpoint.onError) {
+                        // Only ignore non-fatal errors
+                        if (!fatalErrors.includes(body.error) && endpoint.onError) {
                             resolve(endpoint.onError());
                         } else {
                             reject(body.error);

@@ -10,7 +10,7 @@
  * when requesting the API :
  * - data: if the endpoint accepts data
  * - transform: to transform received data
- * - onError: data to receive instead of an error
+ * - onError: data to receive instead of an error, if not fatal
  */
 
 module.exports = [
@@ -60,7 +60,7 @@ module.exports = [
         path: r => `/repository/${r}/acls`,
         method: 'GET',
         transform: data => Object.keys(data)
-            .filter(c => c.length).sort()
+            .filter(c => c.rights.length).sort()
             .map(c => ({
                 name: c,
                 rights: data[c]
