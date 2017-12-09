@@ -60,7 +60,7 @@ module.exports = [
         path: r => `/repository/${r}/acls`,
         method: 'GET',
         transform: data => Object.keys(data)
-            .filter(c => c.rights.length).sort()
+            .filter(c => c.length && data[c].length).sort()
             .map(c => ({
                 name: c,
                 rights: data[c]
