@@ -1,7 +1,7 @@
 # Blih
 
-[![npm](https://img.shields.io/npm/v/blih.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/dt/blih.svg?style=flat-square)]()
+[![npm](https://img.shields.io/npm/v/blih.svg?style=flat-square)](https://www.npmjs.com/package/blih)
+[![npm](https://img.shields.io/npm/dt/blih.svg?style=flat-square)](https://www.npmjs.com/package/blih)
 
 Blih API for Node using the Promise API.
 
