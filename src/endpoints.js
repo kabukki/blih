@@ -21,7 +21,7 @@ module.exports = [
         name: 'createRepository',
         method: 'POST',
         path: _ => '/repositories',
-        data: (name, description) => ({ name, type: 'git', description: undefined })
+        data: (name, _description) => ({ name, type: 'git', description: undefined })
     }, {
         name: 'deleteRepository',
         method: 'DELETE',
