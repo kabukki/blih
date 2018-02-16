@@ -2,10 +2,10 @@
 
 const assert = require('assert');
 const Blih = require('..');
-const endpoints = require('../src/endpoints');
 const crypto = require('crypto');
 
 const [email, password, token] = ['email', 'password', 'token'];
+const endpoints = ['createRepository', 'deleteRepository', 'listRepositories', 'repositoryInfo', 'getACL', 'setACL', 'uploadKey', 'deleteKey', 'listKeys', 'whoami'];
 
 describe('Constructor', function () {
 
@@ -64,10 +64,9 @@ describe('Constructor', function () {
     describe('endpoints', function () {
 
         it('should exist', function () {
-            const expected = endpoints.map(e => e.name);
             const api = new Blih({ email, password });
-            for (const endpoint of expected) {
-                assert.ok(api[endpoint], 'Endpoint does not exist');
+            for (const endpoint of endpoints) {
+                assert.ok(api[endpoint], 'Endpoint ' + endpoint + ' does not exist');
                 assert.equal(typeof api[endpoint], 'function', 'Endpoint is not a function');
             }
         });

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Blih.html">Blih</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#.ping">ping</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#createRepository">createRepository</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#deleteKey">deleteKey</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#deleteRepository">deleteRepository</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#getACL">getACL</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#listKeys">listKeys</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#listRepositories">listRepositories</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#repositoryInfo">repositoryInfo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#setACL">setACL</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#uploadKey">uploadKey</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Blih.html#whoami">whoami</a></span></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>Blih</h1><p><a href="https://www.npmjs.com/package/blih"><img src="https://img.shields.io/npm/v/blih.svg?style=flat-square" alt="npm"></a>
+<a href="https://www.npmjs.com/package/blih"><img src="https://img.shields.io/npm/dt/blih.svg?style=flat-square" alt="npm"></a></p>
+<p>Blih API for Node using the Promise API.</p>
+<h2>Installation</h2><p>Using npm:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm install blih</code></pre><h2>Quickstart</h2><p>Get all your repositories :</p>
+<pre class="prettyprint source lang-javascript"><code>const Blih = require('blih');
+
+const api = new Blih({ email: 'email', password: 'password' });
+
+api.listRepositories()
+  .then(console.log)
+  .catch(console.log);</code></pre><h2>Authentication</h2><p>You have to be authenticated in order to use the Blih API (except for static methods), using your Epitech email and password.</p>
+<pre class="prettyprint source lang-javascript"><code>const api = new Blih({ email: 'email', password: 'password' });</code></pre><p><strong>Note</strong>: Old logins using the format 'xxxxxx_y' are not used to authenticate anymore.</p>
+<p>Alternatively, you can pass your token instead of your password if you have it. If both are given, only the token is taken into account.</p>
+<pre class="prettyprint source lang-javascript"><code>const api = new Blih({ email: 'email', token: 'token' });</code></pre><h2>Documentation</h2><p>The class exposes a set of methods, each returning a promise that will be resolved if the call was successful, rejected otherwise. In case of a failure, the response is a string describing the error.</p>
+<h3>:cloud: Repositories</h3><h4><code>createRepository(name, [description])</code></h4><p>Create a repository.</p>
+<p>:warning: The <code>description</code> is currently ignored.</p>
+<p>Returns: a <code>String</code> confirming creation</p>
+<h4><code>deleteRepository(name)</code></h4><p>Delete a repository</p>
+<p>Returns a <code>String</code> confirming deletion</p>
+<h4><code>listRepositories()</code></h4><p>Get all repositories</p>
+<p>Returns an <code>Array</code> of <code>Objects</code> with the following properties:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+    // The name of the repository
+    name: 'B5MEMO',
+
+    // The URL used by the API to perform actions on this repository
+    url: 'https://blih.epitech.eu/repository/B5MEMO',
+
+    // UUID of the repository
+    uuid: '6846b6e7-1ac9-5402-ba53-3cc84dd68207'
+}</code></pre><h4><code>repositoryInfo(name)</code></h4><p>Get information about a repository</p>
+<p>Returns an <code>Object</code> with the following properties:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+    // Description of the repository, usually always set to 'None'
+    description: 'None',
+
+    // Creation time of the repository (POSIX timestamp)
+    creation_time: 1509351930,
+
+    // The URL used by the API to perform actions on this repository
+    url: 'https://blih.epitech.eu/repository/B5MEMO',
+
+    // Visibility of the repository
+    public: false,
+
+    // UUID of the repository
+    uuid: '6846b6e7-1ac9-5402-ba53-3cc84dd68207'
+}</code></pre><h3>:busts_in_silhouette: ACL</h3><h4><code>setACL(name, user, acl)</code></h4><p>Set ACL for a repository</p>
+<p>Returns a <code>String</code> confirming ACL update</p>
+<h4><code>getACL(name)</code></h4><p>Get ACL of a repository</p>
+<p>Returns an <code>Array</code> of <code>Objects</code> containing the following properties:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+    // Name of the collaborator
+    name: 'ramassage-tek',
+
+    // ACL rights given to them
+    rights: 'r'
+}</code></pre><h3>:key: SSH keys</h3><h4><code>uploadKey(key)</code></h4><p>Upload an SSH key. Only RSA keys are supported.</p>
+<p>Returns a <code>String</code> confirming upload</p>
+<h4><code>deleteKey(key)</code></h4><p>Delete an SSH key  </p>
+<p>Returns a <code>String</code> confirming deletion</p>
+<h4><code>listKeys()</code></h4><p>List all SSH keys</p>
+<p>Returns an <code>Array</code> of <code>Objects</code> containing the following properties:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+    // Identifier of the key (comment)
+    name: 'root@pam',
+
+    // Actual key contents
+    data: 'ssh-rsa .....'
+}</code></pre><h3>:wrench: Miscellaneous</h3><h4><code>whoami()</code></h4><p>Get your identity</p>
+<p>Returns a <code>String</code> containing your old login or email, depending on your promotion.</p>
+<h4><code>static ping()</code></h4><p>Ping the Blih server</p>
+<p>Returns the status code of the response if the server responded in time, otherwise the promise is rejected with a description of the error that caused it.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Feb 16 2018 22:21:16 GMT+0100 (Paris, Madrid) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
