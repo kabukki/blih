@@ -21,6 +21,9 @@ function responseErrorInterceptor (error) {
     }
 }
 
+// Always use Node.js adapter
+axios.defaults.adapter = require('axios/lib/adapters/http');
+
 /**
  * Blih API
  * @class Blih
