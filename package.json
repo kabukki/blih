@@ -12,8 +12,7 @@
     "lint": "eslint src",
     "build": "babel src --out-dir lib",
     "test": "mocha",
-    "doc": "jsdoc --template node_modules/minami -d docs README.md src/index.js",
-    "preinstall": "npm run build"
+    "doc": "jsdoc --template node_modules/minami -d docs README.md src/index.js"
   },
   "author": "Lucien Le Roux <lucien.le-roux@epitech.eu>",
   "license": "MIT",
