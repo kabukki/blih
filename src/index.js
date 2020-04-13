@@ -58,14 +58,12 @@ class Blih {
     /**
      * Create a repository
      * @param  {String} repository  Name of the new repository
-     * @param  {String} description A short description of the repository
      * @return {Promise} description
      */
-    async createRepository (repository, description) {
+    async createRepository (repository) {
         const data = {
             name: repository,
-            type: 'git',
-            description
+            type: 'git'
         };
 
         return (await this.call('post', '/repositories', data)).data.message;
